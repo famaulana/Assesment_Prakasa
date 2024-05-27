@@ -1,2 +1,8 @@
 # Assesment_Prakasa
-This Project builded for assesment in Prakasa Group
+This Project builds for Fullstack Developer assessment in Fortius HRIS - Prakasa Group
+
+
+## Instalation
+
+
+## Usage
