@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -28,4 +29,7 @@ Route::prefix('auth')->group(function () {
 Route::prefix('user')->middleware('api')->group(function () {
     Route::get('list', [UserController::class, 'getUserList'])->name('user.list');
     Route::post('detail', [UserController::class, 'getUserData'])->name('user.detail');
+    Route::post('create', [AccountController::class, 'createAccount'])->name('user.account');
+    Route::post('update', [AccountController::class, 'updateAccount'])->name('user.account.update');
+    Route::post('identity', [AccountController::class, 'storeAccountIdentity'])->name('user.account.identity');
 });
