@@ -16,6 +16,72 @@ class UserRepository
     }
 
     /**
+     * Create User.
+     * @method create
+     * @return Account Returned object from App\Models\Useer
+     */
+    public static function create(
+        string $name,
+        string $email,
+        string $password
+    ): mixed {
+        try {
+            return User::create([
+                'name' => $name,
+                'email' => $email,
+                'password' => $password
+            ]);
+        } catch (Exception $e) {
+            return $e;
+        }
+    }
+
+    /**
+     * Update User.
+     * @method update
+     * @return Account Returned object from App\Models\Useer
+     */
+    public static function update(
+        int $id,
+        string|null $name,
+        string|null $email,
+        string|null $password
+    ): mixed {
+        try {
+            $data = User::where('id', $id)->first();
+
+            if (!empty($name)) {
+                $data->name = $name;
+            }
+            if (!empty($email)) {
+                $data->email = $email;
+            }
+            if (!empty($password)) {
+                $data->password = $password;
+            }
+            $data->save();
+
+            return $data;
+        } catch (Exception $e) {
+            return $e;
+        }
+    }
+
+    /**
+     * Delete User.
+     * @method delete
+     * @return User Returned object from App\Models\User
+     */
+    public static function delete(int $id): mixed
+    {
+        try {
+            return User::where('id', $id)->delete();
+        } catch (Exception $e) {
+            return $e;
+        }
+    }
+
+    /**
      * Get all of the registered user.
      * @method getList
      * @return User Returned object from App\Models\User with pagination
