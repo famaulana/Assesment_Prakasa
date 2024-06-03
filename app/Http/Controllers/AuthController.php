@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Lib\GlobalFunction;
 use App\Lib\ReturnCode;
+use App\Repositories\Accounts\AccountRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -51,7 +52,7 @@ class AuthController extends Controller
      */
     public function me()
     {
-        return response()->json(auth()->user());
+        return response()->json(GlobalFunction::responseFormat(ReturnCode::SUCCESS, AccountRepository::getDetail(Auth::user()->id, null), null));
     }
 
     /**
